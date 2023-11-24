@@ -1,0 +1,31 @@
+.root {
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    z-index: 1100;
+    bottom: 30px;
+    right: 30px;
+}
+
+.qty {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background: #ccc;
+    color: rgb(33, 37, 41);
+    font-weight: normal;
+    font-size: 15px;
+    border-radius: 50%;
+    z-index: 1060;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.qty_active {
+    background-color: #dc3545;
+    color: #fff;
+}

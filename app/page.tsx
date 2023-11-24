@@ -1,95 +1,51 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Link from 'next/link'
+import {Products, Product} from 'boundless-commerce-components';
+import {nativeFetch, apiClient, revalidate} from "@/lib/api";
+import {IProduct} from "boundless-api-client";
+import {fetchBasicSettings} from "@/lib/settings";
 
-export default function Home() {
+export default async function HomePage() {
+  const products = await fetchProductsOnMain();
+  const settings = await fetchBasicSettings();
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <main>
+      <div className={'container-fluid'}>
+        <h1>Products:</h1>
+        <Products
+          className={'bdl-products_gap-10_per-row-2 bdl-products_md-gap-20_per-row-3 bdl-products_lg-gap-30_per-row-4'}
+          // all={{gap: 10, perRow: 2}}
+          // sm={{}}
+        >
+          {products.map((product) =>
+            <Product
+              product={product}
+              key={product.product_id}
+              link={{component: Link, href: `/product/${product.url_key || product.product_id}`}}
+              apiClient={apiClient}
+              settings={settings}
             />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          )}
+        </Products>
       </div>
     </main>
   )
 }
+
+const fetchProductsOnMain = async (): Promise<IProduct[]> => {
+  /**
+   * Fetch Products from the "Products on the Main page" collection.
+   * You can adjust filters, pls see: https://docs.boundless-commerce.com/#tag/Products/paths/~1catalog~1products/get
+   */
+  const data = await nativeFetch('/catalog/products?collection[]=main-page&sort=in_collection', {
+    next: {
+      revalidate,
+      tags: ['products']
+    }
+  });
+  if (!data.ok) {
+    throw new Error('Failed to fetch products')
+  }
+
+  return data.json();
+};
