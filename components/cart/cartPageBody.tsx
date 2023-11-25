@@ -8,6 +8,7 @@ import {apiClient} from "@/lib/api";
 import EmptyCart from "@/components/cart/cartPageBody/emptyCart";
 import {IBasicSettings} from 'boundless-commerce-components';
 import CartItems from "@/components/cart/cartPageBody/cartItems";
+import CheckoutButtons from "@/components/cart/cartPageBody/checkoutButtons";
 
 export default function CartPageBody({settings}: {settings: IBasicSettings}) {
 	const {cartId} = useCart();
@@ -22,12 +23,14 @@ export default function CartPageBody({settings}: {settings: IBasicSettings}) {
 	}
 
 	return (
-		<div>
+		<div className={'mx-auto'} style={{maxWidth: '900px'}}>
 			<CartItems
 				settings={settings}
 				items={items}
 				setItems={setItems}
+				className={'mb-5'}
 			/>
+			<CheckoutButtons />
 		</div>
 	);
 }

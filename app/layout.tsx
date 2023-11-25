@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import 'bootstrap/dist/css/bootstrap.css';
 import './globals.css'
 import 'boundless-commerce-components/dist/styles.css';
+import 'boundless-checkout-react/dist/index.css';
+
 import WrapperForCart from "@/components/wrapperForCart";
 import CartFAB from "@/components/cart/fab";
 import {ReactNode} from 'react';

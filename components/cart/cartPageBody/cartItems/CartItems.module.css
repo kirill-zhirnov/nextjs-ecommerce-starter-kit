@@ -1,3 +1,38 @@
-.root {
+.itemRow {
+    margin-bottom: 0.5rem;
+}
 
+.itemRow:nth-child(2n) {
+    background: #f9f9f9;
+}
+
+.imgLink {
+    display: block;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    max-width: 60px;
+}
+
+.imgLink img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.qtyInputCol {
+    display: inline-flex;
+}
+
+.qtyInput {
+    max-width: 120px;
+}
+
+@media (min-width: 768px) {
+    .colCenteredMd {
+        text-align: center;
+    }
+
+    .colCenteredRightMd {
+        text-align: right;
+    }
 }

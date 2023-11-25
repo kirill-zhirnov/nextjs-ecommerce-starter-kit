@@ -8,8 +8,11 @@ import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import Link from 'next/link'
 import {apiClient} from "@/lib/api";
+import {useRouter} from "next/navigation";
 
 export default function ProductAddedDialog({open, onClose, addedToCart}: IProps) {
+	const router = useRouter();
+
 	return (
 		<Dialog onClose={onClose} open={open}>
 			<DialogTitle>You have successfully added this item</DialogTitle>
@@ -27,9 +30,13 @@ export default function ProductAddedDialog({open, onClose, addedToCart}: IProps)
 				<div className={'d-flex mt-5'}>
 					<Button onClick={onClose} variant="outlined">Continue Shopping</Button>
 					<Button
+						onClick={() => {
+							router.push('/cart');
+							onClose();
+						}}
 						className={'ms-auto'}
-						component={Link}
-						href={'/cart'}
+						// component={Link}
+						// href={'/cart'}
 						variant={'contained'}
 					>Order Now</Button>
 				</div>
