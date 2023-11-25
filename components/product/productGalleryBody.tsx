@@ -5,7 +5,7 @@ import {NoImage} from 'boundless-commerce-components'
 import {ProductGallery} from 'boundless-commerce-components/dist/cart'
 import {apiClient} from "@/lib/api";
 
-export default function ProductGalleryWrapper({product}: {product: IProductItem}) {
+export default function ProductGalleryBody({product}: {product: IProductItem}) {
 	if (!product.images || !product.images.length) {
 		return <NoImage ratio={TThumbRatio['1-1']}/>;
 	}

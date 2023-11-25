@@ -6,18 +6,25 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Snackbar from '@mui/material/Snackbar';
 import {useRouter} from 'next/navigation'
-import CustomCheckoutDialog from "@/components/customCheckoutDialog";
+import CustomCheckoutDialog from "@/components/checkout/customCheckoutDialog";
 
 export default function CheckoutButtons() {
 	const {isLoading, error, clearError, onBoundlessCheckoutClicked, onCustomerCheckoutClicked,
-		showCustomCheckout, handleCloseCustomCheckout
+		showCustomCheckout, handleCloseCustomCheckout, onStripeCheckoutClicked
 	} = useBtnsHandlers();
 
 	return (
-		<>
-			<div className={'d-flex justify-content-end'} style={{gap: '20px'}}>
-				<Button variant={'contained'} size={'large'} disabled={isLoading} onClick={onBoundlessCheckoutClicked}>
-					Boundless Checkout Example
+		<div className={'bg-light p-3'}>
+			<h4 className={'mb-4'}>Example of Checkouts:</h4>
+			<div className={'d-flex justify-content-end flex-wrap'} style={{gap: '20px'}}>
+				<Button
+					variant={'contained'}
+					size={'large'}
+					disabled={isLoading}
+					onClick={onStripeCheckoutClicked}
+					color="primary"
+				>
+					Stripe Checkout
 				</Button>
 				<Button
 					variant={'contained'}
@@ -26,7 +33,16 @@ export default function CheckoutButtons() {
 					onClick={onCustomerCheckoutClicked}
 					color="success"
 				>
-					Custom Checkout Example
+					Custom Checkout
+				</Button>
+				<Button
+					variant={'contained'}
+					size={'large'}
+					disabled={isLoading}
+					onClick={onBoundlessCheckoutClicked}
+					color={'secondary'}
+				>
+					Boundless Checkout
 				</Button>
 			</div>
 			<Snackbar
@@ -41,7 +57,7 @@ export default function CheckoutButtons() {
 				</Alert>
 			</Snackbar>
 			<CustomCheckoutDialog open={showCustomCheckout} onClose={handleCloseCustomCheckout} />
-		</>
+		</div>
 	);
 }
 
@@ -87,6 +103,14 @@ const useBtnsHandlers = () => {
 		})
 	}, []);
 
+	const onStripeCheckoutClicked = useCallback(() => {
+		validateCart().then((result) => {
+			if (result === true) {
+				router.push('/stripe/checkout');
+			}
+		})
+	}, []);
+
 	const handleCloseCustomCheckout = useCallback(() => setShowCustomCheckout(false), []);
 
 	return {
@@ -97,6 +121,7 @@ const useBtnsHandlers = () => {
 		onBoundlessCheckoutClicked,
 		onCustomerCheckoutClicked,
 		showCustomCheckout,
-		handleCloseCustomCheckout
+		handleCloseCustomCheckout,
+		onStripeCheckoutClicked
 	}
 };

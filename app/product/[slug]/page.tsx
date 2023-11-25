@@ -7,7 +7,7 @@ import AddToCart from "@/components/product/addToCart";
 import Link from 'next/link'
 import VariantPicker from "@/components/product/variantPicker";
 import PriceAndSku from "@/components/product/priceAndSku";
-import ProductGalleryWrapper from "@/components/productGalleryWrapper";
+import ProductGalleryBody from "@/components/product/productGalleryBody";
 import type { Metadata, ResolvingMetadata } from 'next'
 
 export default async function ProductPage({params: {slug}}: IProps) {
@@ -26,7 +26,7 @@ export default async function ProductPage({params: {slug}}: IProps) {
 
 				<div className={'row'}>
 					<div className={'col-md-7'}>
-						<ProductGalleryWrapper product={product} />
+						<ProductGalleryBody product={product} />
 					</div>
 					<div className={'col-md-5'}>
 						<div className={'bg-light p-3 mb-4'}>

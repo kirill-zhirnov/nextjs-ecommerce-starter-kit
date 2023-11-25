@@ -3,7 +3,7 @@ import {IBasicSettings} from 'boundless-commerce-components';
 
 export const fetchBasicSettings = async (): Promise<Required<IBasicSettings>> => {
 	// &keys[]=system.currency
-	const data = await nativeFetch(`/system/settings?keys[]=system.locale`, {
+	const data = await nativeFetch(`/system/settings?keys[]=system.locale&keys[]=system.currency`, {
 		next: {
 			revalidate,
 			tags: ['settings']

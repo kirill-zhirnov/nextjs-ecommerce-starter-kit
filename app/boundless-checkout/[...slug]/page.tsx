@@ -1,9 +1,9 @@
 import {Metadata} from "next";
-import BoundlessCheckoutWrapper from "@/components/boundlessCheckoutWrapper";
+import BoundlessCheckoutBody from "@/components/checkout/boundlessCheckoutBody";
 
 export default function BoundlessCheckoutPage() {
 	return (
-		<BoundlessCheckoutWrapper />
+		<BoundlessCheckoutBody />
 	);
 }
 

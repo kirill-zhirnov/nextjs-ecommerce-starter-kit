@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import CartRow from "@/components/cart/cartPageBody/cartItems/cartRow";
 import _debounce from 'lodash/debounce';
 import {apiClient} from "@/lib/api";
+import CartTotalRow from "@/components/cart/cartPageBody/cartTotalRow";
 
 export default function CartItems({items, setItems, settings, className}: ICartItemsProps) {
 	const {total} = useCart();
@@ -32,18 +33,7 @@ export default function CartItems({items, setItems, settings, className}: ICartI
 					settings={settings}
 				/>
 			)}
-			<div className='fw-bold row mb-2'>
-				<div className={clsx('col-md-6 py-2', styles.colCenteredRightMd)}>Order Total:</div>
-				<div className={clsx('col-md-3 py-2', styles.colCenteredMd)}>
-					<span className='d-md-none'>Qty: </span>
-					{total?.qty}
-				</div>
-				<div className={clsx('col-md-2 py-2', styles.colCenteredMd)}>
-					<span className='d-md-none'>Price: </span>
-					{total?.total && formatCurrency(total.total)}
-				</div>
-				<div className={'col-md-1'} />
-			</div>
+			<CartTotalRow items={items} settings={settings} />
 		</div>
 	);
 }

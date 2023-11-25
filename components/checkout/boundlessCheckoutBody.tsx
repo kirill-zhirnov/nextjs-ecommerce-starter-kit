@@ -8,7 +8,7 @@ import {apiClient} from "@/lib/api";
 import {createGetStr} from 'boundless-api-client';
 // import {useRouter} from 'next/navigation'
 
-export default function BoundlessCheckoutWrapper() {
+export default function BoundlessCheckoutBody() {
 	const {cartId} = useCart();
 	const checkoutStarter = useRef<StarterWrapper>();
 	// const router = useRouter();

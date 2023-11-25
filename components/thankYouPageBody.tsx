@@ -1,11 +1,11 @@
 'use client';
 
 import {StarterWrapper, startOrderInfo} from 'boundless-checkout-react';
-import {useRouter, useParams} from 'next/navigation'
+import {useParams} from 'next/navigation'
 import {useRef, useCallback} from "react";
 import {apiClient} from "@/lib/api";
 
-export default function ThankYouPageWrapper() {
+export default function ThankYouPageBody() {
 	const params = useParams();
 	const checkoutStarter = useRef<StarterWrapper>();
 

@@ -5,8 +5,7 @@ import './globals.css'
 import 'boundless-commerce-components/dist/styles.css';
 import 'boundless-checkout-react/dist/index.css';
 
-import WrapperForCart from "@/components/wrapperForCart";
-import CartFAB from "@/components/cart/fab";
+import WrapperForCartContext from "@/components/wrapperForCartContext";
 import {ReactNode} from 'react';
 
 import '@fontsource/roboto/300.css';
@@ -23,10 +22,9 @@ export default function RootLayout({children}: {children: ReactNode}) {
   return (
     <html lang="en">
       <body>
-        <WrapperForCart>
+        <WrapperForCartContext>
           {children}
-          <CartFAB />
-        </WrapperForCart>
+        </WrapperForCartContext>
       </body>
     </html>
   );
