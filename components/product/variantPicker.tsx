@@ -1,7 +1,7 @@
 'use client';
 
 import {useState, useCallback} from "react";
-import {ProductVariantPicker} from 'boundless-commerce-components/dist/cart';
+import {ProductVariantPicker} from 'boundless-commerce-components/dist/client';
 import {IProductItem, IProductVariant} from "boundless-api-client";
 import AddToCart from "@/components/product/addToCart";
 import {IBasicSettings} from 'boundless-commerce-components';

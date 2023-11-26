@@ -2,7 +2,7 @@
 
 import {useState, useEffect, useCallback} from 'react';
 import CartLoader from "@/components/cart/cartLoader";
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 import {ICartItem} from 'boundless-api-client';
 import {apiClient} from "@/lib/api";
 import EmptyCart from "@/components/cart/cartPageBody/emptyCart";

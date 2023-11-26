@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 // import DialogContentText from '@mui/material/DialogContentText';
 import {apiClient} from "@/lib/api";
 import {AxiosError} from 'axios';
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 
 export default function OrderForm() {
 	const {onSubmit} = useSubmitForm();

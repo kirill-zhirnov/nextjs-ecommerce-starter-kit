@@ -1,6 +1,6 @@
 'use client';
 
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 import CircularProgress from '@mui/material/CircularProgress';
 import {useCallback, useRef} from 'react';
 import {startCheckout, StarterWrapper, resetCheckoutState} from 'boundless-checkout-react';
@@ -8,7 +8,7 @@ import {apiClient} from "@/lib/api";
 import {createGetStr} from 'boundless-api-client';
 // import {useRouter} from 'next/navigation'
 
-export default function BoundlessCheckoutBody() {
+export default function BoundlessCheckout() {
 	const {cartId} = useCart();
 	const checkoutStarter = useRef<StarterWrapper>();
 	// const router = useRouter();

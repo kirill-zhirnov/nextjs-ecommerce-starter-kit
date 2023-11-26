@@ -1,10 +1,10 @@
 import {Metadata} from "next";
-import ThankYouPageBody from "@/components/thankYouPageBody";
+import ThankYou from "@/components/thankYou";
 
-export default function BoundlessCheckoutPage() {
+export default function ThankYouPage() {
 	return (
 		<div className={'container'}>
-			<ThankYouPageBody />
+			<ThankYou />
 		</div>
 	);
 }

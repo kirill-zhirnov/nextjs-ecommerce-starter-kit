@@ -1,0 +1,13 @@
+.header {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.logo {
+    color: #000;
+    font-size: 2rem;
+    text-decoration: none;
+}

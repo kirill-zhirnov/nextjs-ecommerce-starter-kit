@@ -11,11 +11,11 @@ export default async function HomePage() {
   return (
     <main>
       <div className={'container-fluid'}>
-        <h1>Products:</h1>
         <Products
-          className={'bdl-products_gap-10_per-row-2 bdl-products_md-gap-20_per-row-3 bdl-products_lg-gap-30_per-row-4'}
-          // all={{gap: 10, perRow: 2}}
-          // sm={{}}
+          all={{gap: 10, perRow: 2}}
+          sm={{gap: 20, perRow: 3}}
+          lg={{gap: 30, perRow: 4}}
+          xxl={{gap: 30, perRow: 6}}
         >
           {products.map((product) =>
             <Product

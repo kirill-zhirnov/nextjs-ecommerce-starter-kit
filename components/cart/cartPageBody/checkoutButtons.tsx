@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 import {useCallback, useState} from "react";
 import {apiClient} from "@/lib/api";
 import Alert from '@mui/material/Alert';

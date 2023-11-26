@@ -1,6 +1,6 @@
 'use client';
 
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 import {useState, useEffect} from "react";
 import {loadStripe} from '@stripe/stripe-js';
 import {

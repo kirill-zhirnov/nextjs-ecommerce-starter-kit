@@ -1,7 +1,7 @@
 'use client';
 
 import {ReactNode, useCallback, useMemo, useState} from 'react';
-import {BoundlessCart} from 'boundless-commerce-components/dist/cart';
+import {BoundlessCart} from 'boundless-commerce-components/dist/client';
 import {apiClient} from "@/lib/api";
 import {IAddToCartResponse} from "boundless-api-client";
 import ProductAddedDialog from "@/components/wrapperForCartContext/productAddedDialog";

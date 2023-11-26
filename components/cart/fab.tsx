@@ -4,7 +4,7 @@ import Fab from '@mui/material/Fab';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import styles from './fab/Fab.module.css';
 import clsx from "clsx";
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 import Link from 'next/link'
 
 export default function CartFAB() {

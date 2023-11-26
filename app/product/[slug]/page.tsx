@@ -1,14 +1,13 @@
-import {IProductItem} from "boundless-api-client";
+import {IProduct, IProductItem} from "boundless-api-client";
 import {apiClient, nativeFetch, revalidate} from "@/lib/api";
 import {notFound} from 'next/navigation'
 import {fetchBasicSettings} from "@/lib/settings";
 import {ProductLabels, ProductAttrs} from 'boundless-commerce-components'
 import AddToCart from "@/components/product/addToCart";
-import Link from 'next/link'
 import VariantPicker from "@/components/product/variantPicker";
 import PriceAndSku from "@/components/product/priceAndSku";
 import ProductGalleryBody from "@/components/product/productGalleryBody";
-import type { Metadata, ResolvingMetadata } from 'next'
+import type {Metadata} from 'next';
 
 export default async function ProductPage({params: {slug}}: IProps) {
 	const product = await fetchProductBySlug(slug);
@@ -60,7 +59,7 @@ export default async function ProductPage({params: {slug}}: IProps) {
 	);
 }
 
-export async function generateMetadata({params: {slug}}: IProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({params: {slug}}: IProps): Promise<Metadata> {
 	const product = await fetchProductBySlug(slug);
 
 	return {
@@ -88,3 +87,21 @@ const fetchProductBySlug = async (slug: string): Promise<IProductItem|undefined>
 };
 
 interface IProps {params: {slug: string}};
+
+export async function generateStaticParams() {
+	//pre-generate first 50 products, if you want to pregenerate all - use a loop (max per-page=100).
+	const data = await nativeFetch('/catalog/products?per-page=50', {
+		next: {
+			revalidate,
+			tags: ['products']
+		}
+	});
+	if (!data.ok) {
+		throw new Error('Failed to fetch products')
+	}
+
+	const products = await data.json() as IProduct[];
+	return products.map(({product_id, url_key}) => ({
+		slug: `${url_key || product_id}`
+	}));
+}

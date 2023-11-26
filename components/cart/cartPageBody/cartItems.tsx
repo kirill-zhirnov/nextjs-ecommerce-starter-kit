@@ -1,9 +1,8 @@
 import {ICartItem, IItemsQty} from 'boundless-api-client';
-import {Dispatch, SetStateAction, useEffect, useMemo, useRef, useState, useCallback} from 'react';
+import {Dispatch, SetStateAction, useCallback} from 'react';
 
-import {useCart} from 'boundless-commerce-components/dist/cart';
+import {useCart} from 'boundless-commerce-components/dist/client';
 import {useFormatCurrency,IBasicSettings} from 'boundless-commerce-components';
-import styles from './cartItems/CartItems.module.css';
 import clsx from 'clsx';
 import CartRow from "@/components/cart/cartPageBody/cartItems/cartRow";
 import _debounce from 'lodash/debounce';
