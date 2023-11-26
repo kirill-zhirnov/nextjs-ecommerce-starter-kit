@@ -25,7 +25,7 @@ export {apiClient};
 export const perPage = 30;
 
 //5 minutes revalidation
-export const revalidate = 60 * 0;
+export const revalidate = 60 * 5;
 
 
 export const nativeFetch = (localUrl: string, {next, cache, headers}: {next?: NextFetchRequestConfig, cache?: RequestCache, headers?: {[key: string]: any}} = {}) => {
