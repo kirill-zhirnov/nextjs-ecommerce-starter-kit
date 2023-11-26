@@ -1,12 +1,12 @@
-import Button from "@mui/material/Button";
+import Button from '@mui/material/Button';
 import {useCart} from 'boundless-commerce-components/dist/client';
 import {useCallback, useState} from "react";
-import {apiClient} from "@/lib/api";
+import {apiClient} from '@/lib/api';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Snackbar from '@mui/material/Snackbar';
 import {useRouter} from 'next/navigation'
-import CustomCheckoutDialog from "@/components/checkout/customCheckoutDialog";
+import CustomCheckoutDialog from '@/components/checkout/customCheckoutDialog';
 
 export default function CheckoutButtons() {
 	const {isLoading, error, clearError, onBoundlessCheckoutClicked, onCustomerCheckoutClicked,
@@ -85,7 +85,7 @@ const useBtnsHandlers = () => {
 			})
 			.finally(() => setIsLoading(false))
 		;
-	}, []);
+	}, [cartId, clearError]);
 
 	const onBoundlessCheckoutClicked = useCallback(() => {
 		validateCart().then((result) => {
@@ -93,7 +93,7 @@ const useBtnsHandlers = () => {
 				router.push('/boundless-checkout/info');
 			}
 		})
-	}, []);
+	}, [validateCart, router]);
 
 	const onCustomerCheckoutClicked = useCallback(() => {
 		validateCart().then((result) => {
@@ -101,7 +101,7 @@ const useBtnsHandlers = () => {
 				setShowCustomCheckout(true);
 			}
 		})
-	}, []);
+	}, [validateCart, setShowCustomCheckout]);
 
 	const onStripeCheckoutClicked = useCallback(() => {
 		validateCart().then((result) => {
@@ -109,9 +109,9 @@ const useBtnsHandlers = () => {
 				router.push('/stripe/checkout');
 			}
 		})
-	}, []);
+	}, [validateCart, router]);
 
-	const handleCloseCustomCheckout = useCallback(() => setShowCustomCheckout(false), []);
+	const handleCloseCustomCheckout = useCallback(() => setShowCustomCheckout(false), [setShowCustomCheckout]);
 
 	return {
 		validateCart,

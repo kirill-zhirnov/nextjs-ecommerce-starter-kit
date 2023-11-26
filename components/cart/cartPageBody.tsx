@@ -1,14 +1,14 @@
 'use client';
 
 import {useState, useEffect, useCallback} from 'react';
-import CartLoader from "@/components/cart/cartLoader";
+import CartLoader from '@/components/cart/cartLoader';
 import {useCart} from 'boundless-commerce-components/dist/client';
 import {ICartItem} from 'boundless-api-client';
-import {apiClient} from "@/lib/api";
-import EmptyCart from "@/components/cart/cartPageBody/emptyCart";
+import {apiClient} from '@/lib/api';
+import EmptyCart from '@/components/cart/cartPageBody/emptyCart';
 import {IBasicSettings} from 'boundless-commerce-components';
-import CartItems from "@/components/cart/cartPageBody/cartItems";
-import CheckoutButtons from "@/components/cart/cartPageBody/checkoutButtons";
+import CartItems from '@/components/cart/cartPageBody/cartItems';
+import CheckoutButtons from '@/components/cart/cartPageBody/checkoutButtons';
 
 export default function CartPageBody({settings}: {settings: IBasicSettings}) {
 	const {cartId} = useCart();
@@ -58,7 +58,7 @@ const useFetchCartItems = () => {
 		if (cartId && !items) {
 			fetchCartItems();
 		}
-	}, [cartId]);
+	}, [cartId]);//eslint-disable-line
 
 	return {
 		items,

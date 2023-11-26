@@ -4,14 +4,12 @@ import {Dispatch, SetStateAction, useCallback} from 'react';
 import {useCart} from 'boundless-commerce-components/dist/client';
 import {useFormatCurrency,IBasicSettings} from 'boundless-commerce-components';
 import clsx from 'clsx';
-import CartRow from "@/components/cart/cartPageBody/cartItems/cartRow";
+import CartRow from '@/components/cart/cartPageBody/cartItems/cartRow';
 import _debounce from 'lodash/debounce';
-import {apiClient} from "@/lib/api";
-import CartTotalRow from "@/components/cart/cartPageBody/cartTotalRow";
+import {apiClient} from '@/lib/api';
+import CartTotalRow from '@/components/cart/cartPageBody/cartTotalRow';
 
 export default function CartItems({items, setItems, settings, className}: ICartItemsProps) {
-	const {total} = useCart();
-	const {formatCurrency} = useFormatCurrency({settings});
 	const {changeQty, rmItem} = useCartManager({setItems});
 
 	return (
@@ -38,7 +36,9 @@ export default function CartItems({items, setItems, settings, className}: ICartI
 }
 
 const useCartManager = ({setItems}: Pick<ICartItemsProps, 'setItems'>) => {
-	const {total, cartId} = useCart();
+	const {cartId} = useCart();
+
+	//eslint-disable-next-line
 	const saveQty = useCallback(_debounce((items: IItemsQty[]) => {
 		if (!cartId) {
 			throw new Error('Cant process - cartId is empty');

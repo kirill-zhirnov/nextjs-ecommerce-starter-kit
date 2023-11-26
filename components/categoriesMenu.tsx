@@ -1,7 +1,5 @@
-'use client';
-
-import {ICategory} from "boundless-api-client";
-import {nativeFetch, revalidate} from "@/lib/api";
+import {ICategory} from 'boundless-api-client';
+import {nativeFetch, revalidate} from '@/lib/api';
 import Link from 'next/link'
 
 export default async function CategoriesMenu() {

@@ -1,12 +1,12 @@
 import {Form, Formik, FormikHelpers, useFormikContext} from 'formik';
 import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
-import {apiErrors2Formik, formikFieldAttrs, TApiErrors} from "@/lib/formUtils";
+import {apiErrors2Formik, formikFieldAttrs, TApiErrors} from '@/lib/formUtils';
 import {useCallback, useState} from "react";
 import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 // import DialogContentText from '@mui/material/DialogContentText';
-import {apiClient} from "@/lib/api";
+import {apiClient} from '@/lib/api';
 import {AxiosError} from 'axios';
 import {useCart} from 'boundless-commerce-components/dist/client';
 
@@ -104,7 +104,7 @@ const useSubmitForm = () => {
 		}
 		//it is not necessery if a callback return a promise
 		// helpers.setSubmitting(false);
-	}, []);
+	}, [cart_id]);
 
 	return {
 		onSubmit,
