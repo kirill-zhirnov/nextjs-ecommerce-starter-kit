@@ -6,7 +6,7 @@ Free 👍. Ready to use 😎. Just clone & deploy! 🤘
 
 ## Online Demo ⚡️
 
-[mars.demos.my-boundless.app](https://mars.demos.my-boundless.app/) - deployed to Netlify.
+[nextjs-14-e-commerce-starter-kit.demos.my-boundless.app](https://nextjs-14-e-commerce-starter-kit.demos.my-boundless.app/) - deployed to Vercel.
 
 ## About Boundless Commerce
 
