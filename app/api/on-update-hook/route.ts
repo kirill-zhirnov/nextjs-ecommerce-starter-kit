@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from 'next/server';
 import {createHash} from 'crypto';
-import {revalidateTag} from 'next/cache'
+import {revalidateTag} from 'next/cache';
 
 export async function POST (request: NextRequest) {
 	const postedData = await request.json();
@@ -20,10 +20,10 @@ export async function POST (request: NextRequest) {
 	try {
 		switch (model) {
 			case 'category':
-				revalidateTag('categories')
+				revalidateTag('categories');
 				break;
 			default:
-				revalidateTag('products')
+				revalidateTag('products');
 				break;
 		}
 	} catch (e) {

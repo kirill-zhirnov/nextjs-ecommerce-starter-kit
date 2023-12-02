@@ -1,5 +1,5 @@
 import {IProductItem, IProductVariant} from 'boundless-api-client';
-import clsx from "clsx";
+import clsx from 'clsx';
 import {useFormatCurrency, IBasicSettings, IPriceForTpl, getPriceForTpl} from 'boundless-commerce-components';
 import currency from 'currency.js';
 import {useMemo} from 'react';

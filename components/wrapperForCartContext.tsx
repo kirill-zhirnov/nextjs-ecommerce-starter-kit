@@ -2,12 +2,12 @@
 
 import {ReactNode, useCallback, useMemo, useState} from 'react';
 import {BoundlessCart} from 'boundless-commerce-components/dist/client';
-import {apiClient} from "@/lib/api";
-import {IAddToCartResponse} from "boundless-api-client";
-import ProductAddedDialog from "@/components/wrapperForCartContext/productAddedDialog";
-import SelectVariantDialog from "@/components/wrapperForCartContext/selectVariantDialog";
-import CartFAB from "@/components/cart/fab";
-import {usePathname} from 'next/navigation'
+import {apiClient} from '@/lib/api';
+import {IAddToCartResponse} from 'boundless-api-client';
+import ProductAddedDialog from '@/components/wrapperForCartContext/productAddedDialog';
+import SelectVariantDialog from '@/components/wrapperForCartContext/selectVariantDialog';
+import CartFAB from '@/components/cart/fab';
+import {usePathname} from 'next/navigation';
 
 export default function WrapperForCartContext({children}: {children: ReactNode}) {
 	const pathname = usePathname();

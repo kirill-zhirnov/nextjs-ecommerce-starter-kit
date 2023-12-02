@@ -12,4 +12,4 @@ export default function ThankYouPage() {
 export const metadata: Metadata = {
 	robots: 'noindex',
 	title: 'Thank you for your order!'
-}
+};

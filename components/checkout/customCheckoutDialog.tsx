@@ -4,7 +4,7 @@ import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
-import OrderForm from "@/components/checkout/customCheckoutDialog/orderForm";
+import OrderForm from '@/components/checkout/customCheckoutDialog/orderForm';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuiDialogContent-root': {

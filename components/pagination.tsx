@@ -1,6 +1,6 @@
-import {IPagination} from "boundless-api-client";
-import Link from "next/link";
-import clsx from "clsx";
+import {IPagination} from 'boundless-api-client';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 export default function Pagination({pagination, urlPrefix = '/', className}: {pagination: IPagination, urlPrefix?: string, className?: string}) {
 	if (pagination.pageCount == 1) {
@@ -9,7 +9,7 @@ export default function Pagination({pagination, urlPrefix = '/', className}: {pa
 
 	return (
 		<nav aria-label="Product navigation">
-			<ul className={clsx("pagination justify-content-center products-pagination", className)}>
+			<ul className={clsx('pagination justify-content-center products-pagination', className)}>
 				{[...Array(pagination.pageCount)].map((_, index) => (
 					<li
 						key={index}

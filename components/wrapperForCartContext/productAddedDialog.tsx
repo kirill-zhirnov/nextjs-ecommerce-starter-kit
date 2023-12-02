@@ -1,14 +1,14 @@
 'use client';
 
-import {IAddToCartResponse} from "boundless-api-client";
-import {VwItem} from "boundless-commerce-components";
+import {IAddToCartResponse} from 'boundless-api-client';
+import {VwItem} from 'boundless-commerce-components';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
-import Link from 'next/link'
-import {apiClient} from "@/lib/api";
-import {useRouter} from "next/navigation";
+import Link from 'next/link';
+import {apiClient} from '@/lib/api';
+import {useRouter} from 'next/navigation';
 
 export default function ProductAddedDialog({open, onClose, addedToCart}: IProps) {
 	const router = useRouter();

@@ -36,7 +36,7 @@
     "bootstrap": "^5.3.2",
     "boundless-api-client": "^0.2.5",
     "boundless-checkout-react": "^1.2.1",
-    "boundless-commerce-components": "^1.0.2",
+    "boundless-commerce-components": "^1.0.6",
     "clsx": "^2.0.0",
     "currency.js": "^2.0.4",
     "formik": "^2.4.5",

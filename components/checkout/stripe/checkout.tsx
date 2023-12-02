@@ -1,13 +1,13 @@
 'use client';
 
 import {useCart} from 'boundless-commerce-components/dist/client';
-import {useState, useEffect} from "react";
+import {useState, useEffect} from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 import {
 	EmbeddedCheckoutProvider,
 	EmbeddedCheckout
 } from '@stripe/react-stripe-js';
-import CircularProgress from "@mui/material/CircularProgress";
+import LoadingScreen from '@/components/loadingScreen';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -29,7 +29,7 @@ export default function StripeCheckout() {
 	}, [cartId]);
 
 	if (!clientSecret) {
-		return <CircularProgress />;
+		return <LoadingScreen />;
 	}
 
 	return (

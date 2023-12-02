@@ -1,12 +1,15 @@
-import {Metadata} from "next";
-import StripeCheckout from "@/components/checkout/stripe/checkout";
+import {Metadata} from 'next';
+import StripeCheckout from '@/components/checkout/stripe/checkout';
 
 export default function StripeCheckoutPage() {
 	return (
-		<StripeCheckout />
+		<div className={'container'}>
+			<StripeCheckout />
+		</div>
 	);
 }
 
 export const metadata: Metadata = {
-	robots: 'noindex'
-}
+	robots: 'noindex',
+	title: 'Stripe Checkout'
+};

@@ -1,12 +1,13 @@
 import {BoundlessClient} from 'boundless-api-client';
 
-const baseURL = process.env.NEXT_PUBLIC_BOUNDLESS_API_BASE_URL;
-const permanentToken = process.env.NEXT_PUBLIC_BOUNDLESS_API_PERMANENT_TOKEN;
-const s3Prefix = process.env.NEXT_PUBLIC_BOUNDLESS_S3_PREFIX;
-const mediaServer = process.env.NEXT_PUBLIC_BOUNDLESS_MEDIA_SERVER;
+export const baseURL = process.env.NEXT_PUBLIC_BOUNDLESS_API_BASE_URL;
+export const permanentToken = process.env.NEXT_PUBLIC_BOUNDLESS_API_PERMANENT_TOKEN;
+export const instanceId = process.env.NEXT_PUBLIC_BOUNDLESS_INSTANCE_ID as unknown as number;
+export const s3Prefix = process.env.NEXT_PUBLIC_BOUNDLESS_S3_PREFIX;
+export const mediaServer = process.env.NEXT_PUBLIC_BOUNDLESS_MEDIA_SERVER;
 
 const apiClient = new BoundlessClient(permanentToken);
-apiClient.setInstanceId(process.env.NEXT_PUBLIC_BOUNDLESS_INSTANCE_ID as unknown as number);
+apiClient.setInstanceId(instanceId);
 
 if (baseURL) {
 	apiClient.setBaseUrl(baseURL);

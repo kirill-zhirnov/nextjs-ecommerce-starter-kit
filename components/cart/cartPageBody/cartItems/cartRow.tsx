@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import {ICartItem,TThumbRatio} from 'boundless-api-client';
 import {useFormatCurrency,IBasicSettings,NoImage,ImgThumb} from 'boundless-commerce-components';
 
@@ -7,15 +7,15 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
-import {apiClient} from "@/lib/api";
-import currency from "currency.js";
+import {apiClient} from '@/lib/api';
+import currency from 'currency.js';
 import styles from './cartItems.module.css';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 export default function CartRow({item, rmItem, onQtyChange, settings}: ICartRowProps) {
 	const {product, image, variant} = item.vwItem;
 	const {formatCurrency} = useFormatCurrency({settings});
-	const productUrl = `/product/${product.url_key || product.product_id}`;
+	const productUrl = `/products/${product.url_key || product.product_id}`;
 
 	return (
 		<div className={clsx('row', styles.itemRow)}>

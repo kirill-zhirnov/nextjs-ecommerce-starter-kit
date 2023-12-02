@@ -1,13 +1,24 @@
 .header {
-    min-height: 150px;
+}
+
+
+.logo-container {
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
 .logo {
     color: #000;
     font-size: 2rem;
     text-decoration: none;
+}
+
+.auth-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    min-height: 36px;
 }

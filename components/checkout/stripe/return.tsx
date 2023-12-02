@@ -1,9 +1,9 @@
 'use client';
 
-import {useSearchParams} from "next/navigation";
-import {useEffect, useState} from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import {useSearchParams} from 'next/navigation';
+import {useEffect, useState} from 'react';
 import Alert from '@mui/material/Alert';
+import LoadingScreen from '@/components/loadingScreen';
 
 export default function StripeReturn() {
 	const params = useSearchParams();
@@ -27,7 +27,7 @@ export default function StripeReturn() {
 	}, [params]);
 
 	if (isSuccess === undefined) {
-		return <CircularProgress />;
+		return <LoadingScreen />;
 	}
 
 	if (isSuccess === false) {

@@ -1,5 +1,5 @@
-import {Metadata} from "next";
-import StripeReturn from "@/components/checkout/stripe/return";
+import {Metadata} from 'next';
+import StripeReturn from '@/components/checkout/stripe/return';
 
 export default function StripeReturnPage() {
 	return (
@@ -9,4 +9,4 @@ export default function StripeReturnPage() {
 
 export const metadata: Metadata = {
 	robots: 'noindex'
-}
+};

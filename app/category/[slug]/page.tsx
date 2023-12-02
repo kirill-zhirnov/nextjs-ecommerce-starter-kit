@@ -4,8 +4,8 @@ import {IProduct, ICategoryItem, ICategory, extractPaginationFromHeaders, IPagin
 import {apiClient, nativeFetch, revalidate} from '@/lib/api';
 import {Product, Products} from 'boundless-commerce-components';
 import Link from 'next/link';
-import {Metadata} from "next";
-import Pagination from "@/components/pagination";
+import {Metadata} from 'next';
+import Pagination from '@/components/pagination';
 
 export default async function CategoryPage({params: {slug}}: IProps) {
 	const category = await fetchCategory(slug);
@@ -33,7 +33,7 @@ export default async function CategoryPage({params: {slug}}: IProps) {
 						<Product
 							product={product}
 							key={product.product_id}
-							link={{component: Link, href: `/product/${product.url_key || product.product_id}`}}
+							link={{component: Link, href: `/products/${product.url_key || product.product_id}`}}
 							apiClient={apiClient}
 							settings={settings}
 						/>
@@ -69,12 +69,12 @@ const fetchCategory = async (slug: string): Promise<ICategoryItem|undefined> => 
 		if (data.status === 404) {
 			return;
 		} else {
-			throw new Error(`Failed to fetch category: ${slug}`)
+			throw new Error(`Failed to fetch category: ${slug}`);
 		}
 	}
 
 	return data.json();
-}
+};
 
 const fetchProductsInCategory = async (category: ICategoryItem): Promise<{products: IProduct[], pagination: IPagination}> => {
 	// &page=1&per-page=50 - if you need a pagination - https://docs.boundless-commerce.com/#tag/Products/paths/~1catalog~1products/get
@@ -85,7 +85,7 @@ const fetchProductsInCategory = async (category: ICategoryItem): Promise<{produc
 		}
 	});
 	if (!data.ok) {
-		throw new Error('Failed to fetch product for category')
+		throw new Error('Failed to fetch product for category');
 	}
 
 	const headers = {};
@@ -106,7 +106,7 @@ export async function generateStaticParams() {
 		}
 	});
 	if (!data.ok) {
-		throw new Error('Failed to fetch categories menu')
+		throw new Error('Failed to fetch categories menu');
 	}
 
 	const categories = await data.json() as ICategory[];

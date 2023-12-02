@@ -1,9 +1,9 @@
-import {Dispatch, SetStateAction, useCallback, ChangeEvent} from "react";
+import {Dispatch, SetStateAction, useCallback, ChangeEvent} from 'react';
 import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import TextField from '@mui/material/TextField';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 export default function SpecifyQty({qty, setQty, disabled = false, className}: IProps) {
 	const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => setQty(parseInt(e.target.value) || 1), [setQty]);

@@ -1,11 +1,11 @@
 'use client';
 
-import {useState, useCallback} from "react";
+import {useState, useCallback} from 'react';
 import {ProductVariantPicker} from 'boundless-commerce-components/dist/client';
-import {IProductItem, IProductVariant} from "boundless-api-client";
-import AddToCart from "@/components/product/addToCart";
+import {IProductItem, IProductVariant} from 'boundless-api-client';
+import AddToCart from '@/components/product/addToCart';
 import {IBasicSettings} from 'boundless-commerce-components';
-import PriceAndSku from "@/components/product/priceAndSku";
+import PriceAndSku from '@/components/product/priceAndSku';
 
 export default function VariantPicker({product, settings}: {product: IProductItem, settings?: IBasicSettings}) {
 	const [selectedVariant, setSelectedVariant] = useState<IProductVariant|undefined>();

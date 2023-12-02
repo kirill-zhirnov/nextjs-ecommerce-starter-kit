@@ -1,6 +1,6 @@
-import {Metadata} from "next";
-import CartPageBody from "@/components/cart/cartPageBody";
-import {fetchBasicSettings} from "@/lib/settings";
+import {Metadata} from 'next';
+import CartPageBody from '@/components/cart/cartPageBody';
+import {fetchBasicSettings} from '@/lib/settings';
 
 export default async function CartPage() {
 	const settings = await fetchBasicSettings();
@@ -15,4 +15,4 @@ export default async function CartPage() {
 
 export const metadata: Metadata = {
 	title: 'Cart'
-}
+};

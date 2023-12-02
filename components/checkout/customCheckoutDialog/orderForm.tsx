@@ -2,25 +2,35 @@ import {Form, Formik, FormikHelpers, useFormikContext} from 'formik';
 import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import {apiErrors2Formik, formikFieldAttrs, TApiErrors} from '@/lib/formUtils';
-import {useCallback, useState} from "react";
+import {useCallback, useState} from 'react';
 import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 // import DialogContentText from '@mui/material/DialogContentText';
 import {apiClient} from '@/lib/api';
 import {AxiosError} from 'axios';
-import {useCart} from 'boundless-commerce-components/dist/client';
+import {useCart, useCustomer} from 'boundless-commerce-components/dist/client';
+import ErrorSummary from '@/components/errorSummary';
+import CircularProgress from '@mui/material/CircularProgress';
+import {ICustomer} from 'boundless-api-client';
 
 export default function OrderForm() {
-	const {onSubmit} = useSubmitForm();
+	const {onSubmit, formView} = useSubmitForm();
+	const {customer, customerIsInited} = useCustomer();
 
-	// if (formView === 'success') {
-	// 	return <SuccessView />;
-	// }
+	if (!customerIsInited) {
+		return (
+			<div className={'text-center'}><CircularProgress /></div>
+		);
+	}
+
+	if (formView === 'success') {
+		return <SuccessView />;
+	}
 
 	return (
 		<div>
 			<p>Fill out the following Form:</p>
-			<Formik initialValues={{contact: {first_name: '', email: '', phone: ''}, client_comment: '', qty: 1}} onSubmit={onSubmit}>
+			<Formik initialValues={getInitialValues(customer)} onSubmit={onSubmit}>
 				{(formikProps) => (
 					<Form>
 						<ErrorSummary />
@@ -81,12 +91,15 @@ export default function OrderForm() {
 }
 
 const useSubmitForm = () => {
+	const {customer} = useCustomer();
 	const {cartId: cart_id} = useCart();
 	const [formView, setFormView] = useState<'form' | 'success'>('form');
+
 	const onSubmit = useCallback(async (values: IFormValues, helpers: FormikHelpers<IFormValues>) => {
 		try {
-			const {data: {order: {id: order_id}}} = await apiClient.createRequest().post('/orders/checkout/init', {cart_id})
+			const {data: {order: {id: order_id}}} = await apiClient.createRequest().post('/orders/checkout/init', {cart_id});
 			await apiClient.createRequest().patch(`/orders/checkout/${order_id}/order`, {
+				customer_id: customer ? 'me' : undefined,
 				contact: {
 					phone: values.contact.phone,
 					email: values.contact.email,
@@ -95,7 +108,7 @@ const useSubmitForm = () => {
 				client_comment: values.client_comment,
 				place_the_order: true
 			});
-			// setFormView('success');
+			setFormView('success');
 			window.location.assign(`/thank-you/${order_id}`);
 		} catch (e) {
 			if ((e as AxiosError).response?.status === 422) {
@@ -122,29 +135,22 @@ interface IFormValues {
 	qty: number
 }
 
-const ErrorSummary = () => {
-	const {errors} = useFormikContext<IFormValues>();
-
-	if (!Object.values(errors).length) {
-		return null;
-	}
-
-	return (
-		<Alert severity="error">
-			<strong>Form contains errors:</strong>
-			<ul>
-				{Object.entries(errors).map(([field, error], key) =>
-					<li key={key}>{field}: {String(error)}</li>
-				)}
-			</ul>
-		</Alert>
-	);
-};
-
 const SuccessView = () => {
 	return (
 		<Alert severity={'success'}>
 			<strong>Thank you!</strong> Please check your mailbox.
 		</Alert>
 	);
-}
+};
+
+const getInitialValues = (customer?: ICustomer) => {
+	return {
+		contact: {
+			first_name: customer?.first_name || '',
+			email: customer?.email || '',
+			phone: customer?.phone || '',
+		},
+		client_comment: '',
+		qty: 1
+	};
+};

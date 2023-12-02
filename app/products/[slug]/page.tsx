@@ -1,12 +1,12 @@
-import {IProduct, IProductItem} from "boundless-api-client";
-import {apiClient, nativeFetch, revalidate} from "@/lib/api";
-import {notFound} from 'next/navigation'
-import {fetchBasicSettings} from "@/lib/settings";
-import {ProductLabels, ProductAttrs} from 'boundless-commerce-components'
-import AddToCart from "@/components/product/addToCart";
-import VariantPicker from "@/components/product/variantPicker";
-import PriceAndSku from "@/components/product/priceAndSku";
-import ProductGalleryBody from "@/components/product/productGalleryBody";
+import {IProduct, IProductItem} from 'boundless-api-client';
+import {apiClient, nativeFetch, revalidate} from '@/lib/api';
+import {notFound} from 'next/navigation';
+import {fetchBasicSettings} from '@/lib/settings';
+import {ProductLabels, ProductAttrs} from 'boundless-commerce-components';
+import AddToCart from '@/components/product/addToCart';
+import VariantPicker from '@/components/product/variantPicker';
+import PriceAndSku from '@/components/product/priceAndSku';
+import ProductGalleryBody from '@/components/product/productGalleryBody';
 import type {Metadata} from 'next';
 
 export default async function ProductPage({params: {slug}}: IProps) {
@@ -19,8 +19,8 @@ export default async function ProductPage({params: {slug}}: IProps) {
 
 	return (
 		<>
-			<div className={'container-fluid'}>
-				<h1>{product.title}</h1>
+			<div className={'container'}>
+				<h1 className={'mb-2'}>{product.title}</h1>
 				{product.labels && <ProductLabels labels={product.labels} className={'mb-4'}/>}
 
 				<div className={'row'}>
@@ -69,7 +69,7 @@ export async function generateMetadata({params: {slug}}: IProps): Promise<Metada
 }
 
 const fetchProductBySlug = async (slug: string): Promise<IProductItem|undefined> => {
-	const data = await nativeFetch(`/catalog/products/item/${slug}?only_published=1`, {
+	const data = await nativeFetch(`/catalog/products/item/${slug}`, {
 		next: {
 			revalidate,
 			tags: ['products', 'product']
@@ -79,7 +79,7 @@ const fetchProductBySlug = async (slug: string): Promise<IProductItem|undefined>
 		if (data.status === 404) {
 			return;
 		} else {
-			throw new Error(`Failed to fetch product: ${slug}`)
+			throw new Error(`Failed to fetch product: ${slug}`);
 		}
 	}
 
@@ -97,7 +97,7 @@ export async function generateStaticParams() {
 		}
 	});
 	if (!data.ok) {
-		throw new Error('Failed to fetch products')
+		throw new Error('Failed to fetch products');
 	}
 
 	const products = await data.json() as IProduct[];
