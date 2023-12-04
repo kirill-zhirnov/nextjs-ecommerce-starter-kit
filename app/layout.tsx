@@ -17,7 +17,7 @@ import CategoriesMenu from '@/components/categoriesMenu';
 import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'Boundless-Commerce Next.js v14 Starter Kit',
+  title: 'Boundless-Commerce Next.js v14 Starter Kit 123',
   description: 'Build your own e-commerce with Boundless-Commerce and Next.js v14',
 };
 
