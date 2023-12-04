@@ -1,5 +1,5 @@
-import {Metadata} from "next";
-import ThankYou from "@/components/thankYou";
+import {Metadata} from 'next';
+import ThankYou from '@/components/thankYou';
 
 export default function ThankYouPage() {
 	return (

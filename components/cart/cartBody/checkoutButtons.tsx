@@ -1,11 +1,11 @@
 import Button from '@mui/material/Button';
 import {useCart} from 'boundless-commerce-components/dist/client';
-import {useCallback, useState} from "react";
+import {useCallback, useState} from 'react';
 import {apiClient} from '@/lib/api';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Snackbar from '@mui/material/Snackbar';
-import {useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation';
 import CustomCheckoutDialog from '@/components/checkout/customCheckoutDialog';
 
 export default function CheckoutButtons() {
@@ -92,7 +92,7 @@ const useBtnsHandlers = () => {
 			if (result === true) {
 				router.push('/boundless-checkout/info');
 			}
-		})
+		});
 	}, [validateCart, router]);
 
 	const onCustomerCheckoutClicked = useCallback(() => {
@@ -100,7 +100,7 @@ const useBtnsHandlers = () => {
 			if (result === true) {
 				setShowCustomCheckout(true);
 			}
-		})
+		});
 	}, [validateCart, setShowCustomCheckout]);
 
 	const onStripeCheckoutClicked = useCallback(() => {
@@ -108,7 +108,7 @@ const useBtnsHandlers = () => {
 			if (result === true) {
 				router.push('/stripe/checkout');
 			}
-		})
+		});
 	}, [validateCart, router]);
 
 	const handleCloseCustomCheckout = useCallback(() => setShowCustomCheckout(false), [setShowCustomCheckout]);
@@ -123,5 +123,5 @@ const useBtnsHandlers = () => {
 		showCustomCheckout,
 		handleCloseCustomCheckout,
 		onStripeCheckoutClicked
-	}
+	};
 };

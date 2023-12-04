@@ -1,5 +1,5 @@
 import {Metadata} from 'next';
-import CartPageBody from '@/components/cart/cartPageBody';
+import CartBody from '@/components/cart/cartBody';
 import {fetchBasicSettings} from '@/lib/settings';
 
 export default async function CartPage() {
@@ -8,7 +8,7 @@ export default async function CartPage() {
 	return (
 		<div className={'container'}>
 			<h1 className={'mb-4'}>Cart page</h1>
-			<CartPageBody settings={settings} />
+			<CartBody settings={settings} />
 		</div>
 	);
 }

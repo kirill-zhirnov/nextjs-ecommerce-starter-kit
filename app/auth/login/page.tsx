@@ -23,7 +23,12 @@ export default function LoginPage() {
 
 	return (
 		<div className={'container'}>
-			<LoginForm />
+			<h1 className={'mb-4'}>Login</h1>
+			<div className={'row'}>
+				<div className={'col-md-6 offset-md-3 col-xl-4 offset-xl-4'}>
+					<LoginForm />
+				</div>
+			</div>
 		</div>
 	);
 }

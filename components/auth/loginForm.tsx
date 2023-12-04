@@ -8,7 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import {useCallback} from 'react';
 import {apiClient} from '@/lib/api';
 import {useCustomer} from 'boundless-commerce-components/dist/client';
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function LoginForm() {
 	const {onSubmit} = useSubmitLoginForm();
@@ -69,7 +69,7 @@ const useSubmitLoginForm = () => {
 			})
 			.catch(({response: {data}}) => setErrors(apiErrors2Formik(data)))
 			.finally(() => setSubmitting(false));
-	}, []);
+	}, [login]);
 
 	return {
 		onSubmit

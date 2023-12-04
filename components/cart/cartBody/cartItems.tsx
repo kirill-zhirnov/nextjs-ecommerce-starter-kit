@@ -4,10 +4,10 @@ import {Dispatch, SetStateAction, useCallback} from 'react';
 import {useCart} from 'boundless-commerce-components/dist/client';
 import {useFormatCurrency,IBasicSettings} from 'boundless-commerce-components';
 import clsx from 'clsx';
-import CartRow from '@/components/cart/cartPageBody/cartItems/cartRow';
+import CartRow from '@/components/cart/cartBody/cartItems/cartRow';
 import _debounce from 'lodash/debounce';
 import {apiClient} from '@/lib/api';
-import CartTotalRow from '@/components/cart/cartPageBody/cartTotalRow';
+import CartTotalRow from '@/components/cart/cartBody/cartTotalRow';
 
 export default function CartItems({items, setItems, settings, className}: ICartItemsProps) {
 	const {changeQty, rmItem} = useCartManager({setItems});
@@ -72,7 +72,7 @@ const useCartManager = ({setItems}: Pick<ICartItemsProps, 'setItems'>) => {
 		});
 
 
-	}, [setItems, saveQty])
+	}, [setItems, saveQty]);
 
 	const rmItem = useCallback((itemId: number) => {
 		if (!cartId) {
@@ -88,7 +88,7 @@ const useCartManager = ({setItems}: Pick<ICartItemsProps, 'setItems'>) => {
 	return {
 		changeQty,
 		rmItem
-	}
+	};
 };
 
 interface ICartItemsProps {

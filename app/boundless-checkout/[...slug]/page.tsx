@@ -1,5 +1,5 @@
-import {Metadata} from "next";
-import BoundlessCheckout from "@/components/checkout/boundlessCheckout";
+import {Metadata} from 'next';
+import BoundlessCheckout from '@/components/checkout/boundlessCheckout';
 
 export default function BoundlessCheckoutPage() {
 	return (
@@ -9,4 +9,4 @@ export default function BoundlessCheckoutPage() {
 
 export const metadata: Metadata = {
 	robots: 'noindex'
-}
+};

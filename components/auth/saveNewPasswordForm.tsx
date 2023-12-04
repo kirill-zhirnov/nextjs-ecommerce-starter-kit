@@ -107,7 +107,7 @@ const useSubmitForm = (customer?: ICustomer, authToken?: string) => {
 			})
 			.catch(({response: {data}}) => setErrors(apiErrors2Formik(data)))
 			.finally(() => setSubmitting(false));
-	}, [customer, authToken]);
+	}, [customer, authToken, login, router]);
 
 	return {
 		onSubmit

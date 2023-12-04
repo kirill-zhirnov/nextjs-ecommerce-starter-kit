@@ -1,5 +1,5 @@
 import CartRowLoader from './cartLoader/cartRowLoader';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 export default function CartLoader ({className}: {className?: string}) {
 	return (

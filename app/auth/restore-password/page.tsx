@@ -22,7 +22,12 @@ export default function RestorePasswordPage() {
 
 	return (
 		<div className={'container'}>
-			<RestorePasswordForm />
+			<h1 className={'mb-4'}>Forgot Password?</h1>
+			<div className={'row'}>
+				<div className={'col-md-6 offset-md-3 col-xl-4 offset-xl-4'}>
+					<RestorePasswordForm />
+				</div>
+			</div>
 		</div>
 	);
 }

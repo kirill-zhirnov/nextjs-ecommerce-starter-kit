@@ -5,12 +5,12 @@ import CartLoader from '@/components/cart/cartLoader';
 import {useCart} from 'boundless-commerce-components/dist/client';
 import {ICartItem} from 'boundless-api-client';
 import {apiClient} from '@/lib/api';
-import EmptyCart from '@/components/cart/cartPageBody/emptyCart';
+import EmptyCart from '@/components/cart/cartBody/emptyCart';
 import {IBasicSettings} from 'boundless-commerce-components';
-import CartItems from '@/components/cart/cartPageBody/cartItems';
-import CheckoutButtons from '@/components/cart/cartPageBody/checkoutButtons';
+import CartItems from '@/components/cart/cartBody/cartItems';
+import CheckoutButtons from '@/components/cart/cartBody/checkoutButtons';
 
-export default function CartPageBody({settings}: {settings: IBasicSettings}) {
+export default function CartBody({settings}: {settings: IBasicSettings}) {
 	const {cartId} = useCart();
 	const {items, isLoading, setItems} = useFetchCartItems();
 

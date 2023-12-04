@@ -1,9 +1,9 @@
-import {ICartItem} from "boundless-api-client";
+import {ICartItem} from 'boundless-api-client';
 import {useFormatCurrency,IBasicSettings} from 'boundless-commerce-components';
-import {useMemo} from "react";
-import clsx from "clsx";
-import styles from "@/components/cart/cartPageBody/cartItems/cartItems.module.css";
-import currency from "currency.js";
+import {useMemo} from 'react';
+import clsx from 'clsx';
+import styles from '@/components/cart/cartBody/cartItems/cartItems.module.css';
+import currency from 'currency.js';
 
 export default function CartTotalRow({items, settings}: {items: ICartItem[], settings: IBasicSettings}) {
 	const {formatCurrency} = useFormatCurrency({settings});

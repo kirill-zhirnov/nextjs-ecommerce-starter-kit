@@ -21,7 +21,7 @@ export default function AuthBar() {
 
 		logout();
 		router.push('/');
-	}, [router]);
+	}, [router, logout]);
 
 	const rootClasses = clsx(headerStyles['auth-bar'], 'my-1');
 

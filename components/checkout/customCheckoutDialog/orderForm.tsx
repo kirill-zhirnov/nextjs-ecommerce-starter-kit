@@ -117,7 +117,7 @@ const useSubmitForm = () => {
 		}
 		//it is not necessery if a callback return a promise
 		// helpers.setSubmitting(false);
-	}, [cart_id]);
+	}, [cart_id, customer]);
 
 	return {
 		onSubmit,
