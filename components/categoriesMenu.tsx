@@ -7,7 +7,7 @@ export default async function CategoriesMenu() {
 
 	return (
 		<div className={'container mb-4'}>
-			<ul className={'list-unstyled d-flex flex-wrap border-top border-bottom py-3 m-0'}
+			<ul className={'list-unstyled d-flex flex-wrap justify-content-center border-top border-bottom py-3 m-0'}
 					style={{gap: '15px'}}
 			>
 				{categories.map(({category_id, title, url_key}) =>
