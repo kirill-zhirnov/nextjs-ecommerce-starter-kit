@@ -12,7 +12,7 @@ export default async function CategoriesMenu() {
 			>
 				{categories.map(({category_id, title, url_key}) =>
 					<li key={category_id}>
-						<Link href={`/category/${url_key || category_id}`} className={'fs-4'}>{title}</Link>
+						<Link href={`/collections/${url_key || category_id}`} className={'fs-4'}>{title}</Link>
 					</li>
 				)}
 			</ul>
