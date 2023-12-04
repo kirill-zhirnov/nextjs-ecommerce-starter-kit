@@ -4,6 +4,18 @@ Ready to use [Next.js](https://nextjs.org) v14 (TypeScript) E-commerce Starter K
 
 Free 👍. Ready to use 😎. Just clone & deploy! 🤘
 
+## Features
+
+- [x] Next.js v14 - The new App router
+- [x] 3 different checkout flows - it gives you tips about own checkout flow implementation and payment gateway integration.
+- [x] Stripe Checkout
+- [x] Boundless Checkout with PayPal
+- [x] Custom Checkout form
+- [x] Authentication: Sign in, Password Restore, Sign out
+- [x] My orders page
+- [x] Boundless Webhook handler: on Update/Insert/Delete appropriate cache will be invalidated
+- [x] Simple codebase without complex dependencies (no Redux and other code coherence)
+
 ## Online Demo ⚡️
 
 [nextjs-14-e-commerce-starter-kit.demos.my-boundless.app](https://nextjs-14-e-commerce-starter-kit.demos.my-boundless.app/) - deployed to Vercel.
@@ -34,9 +46,21 @@ If you want to use Stripe, put values for `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, 
 
 5. Install dependencies: `npm install`
 6. `npm run dev` - to start locally, then open `http://localhost:3000`
-7. If you want Next.js cache to be validated - setup web hook in the Boundless Admin: "Control panel" -> "Settings" -> "Web hooks",
-the hook url: `http://localhost:3000/api/on-update-hook`. Put a secret key and specify it as an ENV variable: `WEBHOOK_SIGN_KEY`
+
+## Set Up Webhook Handler
+
+1. Go to "Control panel" -> "Settings" -> "Webhooks" and create a new one:
+
+![](assets/webhooks-grid.png)
+
+2. Create a new webhook:
+
+![](assets/webhook-form.png)
+
+You need to specify absolute URL to the webhook handler, e.g.: `http://localhost:3000/api/on-update-hook`. Then specify a secret key and put it as an ENV variable: `WEBHOOK_SIGN_KEY`.
+
+3. Save.
 
 ---
 
-[NextJS eCommerce templates](https://boundless-commerce.com/templates) - Free. Ready to use. Just clone & deploy!
+[NextJS and React eCommerce templates](https://boundless-commerce.com/templates) - Free. Ready to use. Just clone & deploy!
