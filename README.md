@@ -18,7 +18,7 @@ Free 👍. Ready to use 😎. Just clone & deploy! 🤘
 
 ## Online Demo ⚡️
 
-[nextjs-14-e-commerce-starter-kit.demos.my-boundless.app](https://nextjs-14-e-commerce-starter-kit.demos.my-boundless.app/) - deployed to Vercel.
+[nextjs-ecommerce-starter-kit.vercel.app](https://nextjs-ecommerce-starter-kit.vercel.app)
 
 ## About Boundless Commerce
 
