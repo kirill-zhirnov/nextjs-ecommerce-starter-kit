@@ -11,7 +11,7 @@ Free 👍. Ready to use 😎. Just clone & deploy! 🤘
 - [x] Stripe Checkout
 - [x] Boundless Checkout with PayPal
 - [x] Custom Checkout form
-- [x] Authentication: Sign in, Password Restore, Sign out
+- [x] Authentication: Sign Up, Sign In, Password Restore, Sign out
 - [x] My orders page
 - [x] Boundless Webhook handler: on Update/Insert/Delete appropriate cache will be invalidated
 - [x] Simple codebase without complex dependencies (no Redux and other code coherence)

@@ -1,12 +1,12 @@
 'use client';
 
-import LoginForm from '@/components/auth/loginForm';
+import RegisterForm from '@/components/auth/registerForm';
 import {useCustomer} from 'boundless-commerce-components/dist/client';
 import LoadingScreen from '@/components/loadingScreen';
 import {useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function RegisterPage() {
 	const {customer, customerIsInited} = useCustomer();
 	const router = useRouter();
 
@@ -22,10 +22,10 @@ export default function LoginPage() {
 
 	return (
 		<div className={'container'}>
-			<h1 className={'mb-4'}>Login</h1>
+			<h1 className={'mb-4'}>Register</h1>
 			<div className={'row'}>
 				<div className={'col-md-6 offset-md-3 col-xl-4 offset-xl-4'}>
-					<LoginForm />
+					<RegisterForm />
 				</div>
 			</div>
 		</div>

@@ -49,6 +49,12 @@ export default function AuthBar() {
 					href={'/auth/login'}
 					startIcon={<LoginIcon />}
 				>Sign In</Button>
+			<span>|</span>
+			<Button
+				component={Link}
+				href={'/auth/register'}
+				startIcon={<PersonIcon />}
+			>Sign Up</Button>
 		</div>
 	);
 }
