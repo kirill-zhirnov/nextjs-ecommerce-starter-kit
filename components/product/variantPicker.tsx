@@ -2,14 +2,14 @@
 
 import {useState, useCallback} from 'react';
 import {ProductVariantPicker} from 'boundless-commerce-components/dist/client';
-import {IProductItem, IProductVariant} from 'boundless-api-client';
+import {IProductItem, IVariant} from 'boundless-api-client';
 import AddToCart from '@/components/product/addToCart';
 import {IBasicSettings} from 'boundless-commerce-components';
 import PriceAndSku from '@/components/product/priceAndSku';
 
 export default function VariantPicker({product, settings}: {product: IProductItem, settings?: IBasicSettings}) {
-	const [selectedVariant, setSelectedVariant] = useState<IProductVariant|undefined>();
-	const onCaseChange = useCallback((value: {}, variant?: IProductVariant) => {
+	const [selectedVariant, setSelectedVariant] = useState<IVariant|undefined>();
+	const onCaseChange = useCallback((value: {}, variant?: IVariant) => {
 		setSelectedVariant(variant ? variant : undefined);
 	}, []);
 
@@ -30,7 +30,7 @@ export default function VariantPicker({product, settings}: {product: IProductIte
 				variant={selectedVariant}
 			/>
 			<AddToCart
-				itemId={selectedVariant?.item_id}
+				itemId={selectedVariant?.inventoryItem.item_id}
 				disabled={!selectedVariant?.in_stock}
 			/>
 		</div>

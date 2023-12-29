@@ -83,6 +83,7 @@ export async function GET (request: NextRequest) {
 			Object.assign(data, {contact});
 		}
 
+		//place the order
 		await apiClient.createRequest().patch(`/orders/checkout/${order.id}/order`, data);
 
 		//method available only for token with management rights:
@@ -126,7 +127,7 @@ const makeLineItems = async (apiClient: BoundlessClient, cartId: string) => {
 
 	const line_items = [];
 	for (const item of items) {
-		const unit_amount = item.itemPrice.final_price ? Number(item.itemPrice.final_price) * 100 : 0;
+		const unit_amount = item.itemPrice.final_price ? parseInt(String(Number(item.itemPrice.final_price) * 100)) : 0;
 		const {product, variant, image} = item.vwItem;
 
 		let name = product.title;
