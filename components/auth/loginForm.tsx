@@ -7,7 +7,7 @@ import {apiErrors2Formik, formikFieldAttrs} from '@/lib/formUtils';
 import LoginIcon from '@mui/icons-material/Login';
 import {useCallback} from 'react';
 import {apiClient} from '@/lib/api';
-import {useCustomer} from 'boundless-commerce-components/dist/client';
+import {useCart, useCustomer} from 'boundless-commerce-components/dist/client';
 import Link from 'next/link';
 
 export default function LoginForm() {
@@ -57,15 +57,21 @@ export default function LoginForm() {
 
 const useSubmitLoginForm = () => {
 	const {login} = useCustomer();
+	const {setTotal, setCartId, cartId} = useCart();
 
 	const onSubmit = useCallback((values: ILoginFormValues, {setSubmitting, setErrors}: FormikHelpers<ILoginFormValues>) => {
 		if (!login) {
 			throw new Error('authCustomer is empty. Did you wrap the app in BoundlessCart?');
 		}
 
-		apiClient.customer.login(values.email, values.password)
-			.then(({authToken, customer}) => {
+		apiClient.customer.login(values.email, values.password, cartId)
+			.then(({authToken, customer, activeCart}) => {
 				login(authToken, customer);
+
+				if (activeCart && setCartId && setTotal) {
+					setCartId(activeCart.id);
+					setTotal(activeCart.total);
+				}
 			})
 			.catch(({response: {data}}) => setErrors(apiErrors2Formik(data)))
 			.finally(() => setSubmitting(false));
