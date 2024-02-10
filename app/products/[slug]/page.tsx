@@ -1,5 +1,5 @@
-import {IProduct, IProductItem} from 'boundless-api-client';
-import {apiClient, nativeFetch, revalidate} from '@/lib/api';
+import {IAdapterNegativeResponse, IProductItem} from 'boundless-api-client';
+import {apiClient, revalidate} from '@/lib/api';
 import {notFound} from 'next/navigation';
 import {fetchBasicSettings} from '@/lib/settings';
 import {ProductLabels, ProductAttrs} from 'boundless-commerce-components';
@@ -69,38 +69,35 @@ export async function generateMetadata({params: {slug}}: IProps): Promise<Metada
 }
 
 const fetchProductBySlug = async (slug: string): Promise<IProductItem|undefined> => {
-	const data = await nativeFetch(`/catalog/products/item/${slug}`, {
-		next: {
-			revalidate,
-			tags: ['products', 'product']
-		}
-	});
-	if (!data.ok) {
-		if (data.status === 404) {
+	try {
+		return await apiClient.catalog.getProduct(slug, {
+			next: {
+				revalidate,
+				tags: ['products', 'product']
+			}
+		});
+	} catch (e) {
+		const err = e as IAdapterNegativeResponse;
+		if (err.isAxiosError && err.response?.status === 404) {
 			return;
-		} else {
-			throw new Error(`Failed to fetch product: ${slug}`);
 		}
-	}
 
-	return data.json();
+		throw err;
+	}
 };
 
 interface IProps {params: {slug: string}};
 
 export async function generateStaticParams() {
-	//pre-generate first 50 products, if you want to pregenerate all - use a loop (max per-page=100).
-	const data = await nativeFetch('/catalog/products?per-page=50', {
+	const {products} = await apiClient.catalog.getProducts({
+		'per-page': 50
+	}, {
 		next: {
 			revalidate,
 			tags: ['products']
 		}
 	});
-	if (!data.ok) {
-		throw new Error('Failed to fetch products');
-	}
 
-	const products = await data.json() as IProduct[];
 	return products.map(({product_id, url_key}) => ({
 		slug: `${url_key || product_id}`
 	}));

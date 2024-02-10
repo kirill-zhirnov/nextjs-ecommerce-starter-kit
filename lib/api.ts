@@ -29,15 +29,3 @@ export const perPage = 30;
 export const revalidate = 60 * 5;
 
 
-export const nativeFetch = (localUrl: string, {next, cache, headers}: {next?: NextFetchRequestConfig, cache?: RequestCache, headers?: {[key: string]: any}} = {}) => {
-	const urlPrefix = baseURL || 'https://v1.api.boundless-commerce.com';
-
-	return fetch(`${urlPrefix}${localUrl}`, {
-		cache,
-		next,
-		headers: {
-			Authorization: `Bearer ${permanentToken}`,
-			...headers
-		}
-	});
-};

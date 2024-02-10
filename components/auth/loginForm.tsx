@@ -75,7 +75,7 @@ const useSubmitLoginForm = () => {
 			})
 			.catch(({response: {data}}) => setErrors(apiErrors2Formik(data)))
 			.finally(() => setSubmitting(false));
-	}, [login]);
+	}, [login, cartId, setCartId, setTotal]);
 
 	return {
 		onSubmit

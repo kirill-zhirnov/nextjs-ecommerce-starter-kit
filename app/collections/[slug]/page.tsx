@@ -1,11 +1,11 @@
 import {fetchBasicSettings} from '@/lib/settings';
 import {notFound} from 'next/navigation';
-import {IProduct, ICategoryItem, ICategory, extractPaginationFromHeaders, IPagination} from 'boundless-api-client';
-import {apiClient, nativeFetch, revalidate} from '@/lib/api';
+import {IProduct, ICategoryItem, IPagination} from 'boundless-api-client';
+import {apiClient, revalidate} from '@/lib/api';
 import {Product, Products} from 'boundless-commerce-components';
 import Link from 'next/link';
 import {Metadata} from 'next';
-import Pagination from '@/components/pagination';
+import {IAdapterNegativeResponse} from 'boundless-api-client';
 
 export default async function CategoryPage({params: {slug}}: IProps) {
 	const category = await fetchCategory(slug);
@@ -59,57 +59,46 @@ export async function generateMetadata({params: {slug}}: IProps): Promise<Metada
 interface IProps {params: {slug: string}};
 
 const fetchCategory = async (slug: string): Promise<ICategoryItem|undefined> => {
-	const data = await nativeFetch(`/catalog/categories/item/${slug}`, {
-		next: {
-			revalidate,
-			tags: ['categories']
-		}
-	});
-	if (!data.ok) {
-		if (data.status === 404) {
+	try {
+		return await apiClient.catalog.getCategoryItem(slug, {}, {
+			next: {
+				revalidate,
+				tags: ['categories']
+			}
+		});
+	} catch (e) {
+		const err = e as IAdapterNegativeResponse;
+		if (err.isAxiosError && err.response?.status === 404) {
 			return;
-		} else {
-			throw new Error(`Failed to fetch category: ${slug}`);
 		}
-	}
 
-	return data.json();
+		throw err;
+	}
 };
 
 const fetchProductsInCategory = async (category: ICategoryItem): Promise<{products: IProduct[], pagination: IPagination}> => {
 	// &page=1&per-page=50 - if you need a pagination - https://docs.boundless-commerce.com/#tag/Products/paths/~1catalog~1products/get
-	const data = await nativeFetch(`/catalog/products?category[]=${category.category_id}&sort=in_category,-in_stock,price`, {
+	const {products, pagination} = await apiClient.catalog.getProducts({
+		category: [category.category_id],
+		sort: 'in_category,-in_stock,price'
+	}, {
 		next: {
 			revalidate,
 			tags: ['products']
 		}
 	});
-	if (!data.ok) {
-		throw new Error('Failed to fetch product for category');
-	}
 
-	const headers = {};
-	data.headers.forEach((val, headerKey) => {
-		Object.assign(headers, {[headerKey]: val});
-	});
-
-	const pagination = extractPaginationFromHeaders(headers);
-
-	return {products: await data.json(), pagination};
+	return {products, pagination};
 };
 
 export async function generateStaticParams() {
-	const data = await nativeFetch('/catalog/categories/flat', {
+	const categories = await apiClient.catalog.getFlatCategories({}, {
 		next: {
 			revalidate,
 			tags: ['categories']
 		}
 	});
-	if (!data.ok) {
-		throw new Error('Failed to fetch categories menu');
-	}
 
-	const categories = await data.json() as ICategory[];
 	return categories.map(({category_id, url_key}) => ({
 		slug: `${url_key || category_id}`
 	}));

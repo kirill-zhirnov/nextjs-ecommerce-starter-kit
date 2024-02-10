@@ -1,5 +1,5 @@
 import {ICategory} from 'boundless-api-client';
-import {nativeFetch, revalidate} from '@/lib/api';
+import {apiClient, revalidate} from '@/lib/api';
 import Link from 'next/link';
 
 export default async function CategoriesMenu() {
@@ -21,15 +21,12 @@ export default async function CategoriesMenu() {
 }
 
 const fetchCategoriesMenu = async (): Promise<ICategory[]> => {
-	const data = await nativeFetch('/catalog/categories/tree?menu=category', {
+	return apiClient.catalog.getCategoryTree({
+		menu: 'category'
+	}, {
 		next: {
 			revalidate,
 			tags: ['categories']
 		}
 	});
-	if (!data.ok) {
-		throw new Error('Failed to fetch categories menu');
-	}
-
-	return data.json();
 };
