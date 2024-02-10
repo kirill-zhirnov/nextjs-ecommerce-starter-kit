@@ -7,11 +7,11 @@ import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 // import DialogContentText from '@mui/material/DialogContentText';
 import {apiClient} from '@/lib/api';
-import {AxiosError} from 'axios';
 import {useCart, useCustomer} from 'boundless-commerce-components/dist/client';
 import ErrorSummary from '@/components/errorSummary';
 import CircularProgress from '@mui/material/CircularProgress';
 import {ICustomer} from 'boundless-api-client';
+import {IAdapterNegativeResponse} from 'boundless-api-client';
 
 export default function OrderForm() {
 	const {onSubmit, formView} = useSubmitForm();
@@ -111,8 +111,8 @@ const useSubmitForm = () => {
 			setFormView('success');
 			window.location.assign(`/thank-you/${order_id}`);
 		} catch (e) {
-			if ((e as AxiosError).response?.status === 422) {
-				helpers.setErrors(apiErrors2Formik((e as AxiosError).response?.data as TApiErrors));
+			if ((e as IAdapterNegativeResponse).response?.status === 422) {
+				helpers.setErrors(apiErrors2Formik((e as IAdapterNegativeResponse).response?.data as TApiErrors));
 			}
 		}
 		//it is not necessery if a callback return a promise
